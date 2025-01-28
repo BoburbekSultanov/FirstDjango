@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.models import Jobs, Category, Product, Tariff
+from apps.models import Jobs, Category, Product, Tariff, Image
 
 
 # Register your models here.
@@ -19,4 +19,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Tariff)
 class TariffAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
     pass

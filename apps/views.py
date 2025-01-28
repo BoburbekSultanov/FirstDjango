@@ -5,7 +5,7 @@ import json
 
 from django.http import JsonResponse, HttpResponse
 
-from apps.models import Jobs, Product, Tariff
+from apps.models import Jobs, Product, Tariff, Image
 from config.settings import BASE_DIR
 
 
@@ -74,19 +74,39 @@ from config.settings import BASE_DIR
 
 def user_list(request):
     users = User.objects.all()
-    return render(request, 'users-list.html', context = {'users': users})
+    return render(request, 'users-list.html', context={'users': users})
+
 
 def jobs_list(request):
     jobs = Jobs.objects.all()
-    return render(request, 'jobs-list.html', {"jobs":jobs})
+    return render(request, 'jobs-list.html', {"jobs": jobs})
 
 
 def product_list(request):
     products = Product.objects.all()
-    context = {"products":products}
+    context = {"products": products}
     return render(request, 'lesson_2/product-list.html', context)
+
 
 def tariff_list(request):
     tariffs = Tariff.objects.all()
-    context = {"tariffs":tariffs}
+    context = {"tariffs": tariffs}
     return render(request, 'lesson_2/tariff-list.html', context)
+
+
+def home(request):
+    return render(request, 'lesson_3/home.html')
+
+
+def home_page(request):
+    return render(request, 'lesson_3/home-page.html')
+
+def three_lesson_product_list(request):
+    products = Product.objects.all()
+    context = {"products":products}
+    return render(request, 'lesson_3/product-list.html', context)
+
+def three_lesson_product_detail(request, pk):
+    product = Product.objects.filter(pk = pk).first()
+    context = {"product":product}
+    return render(request, 'lesson_3/product-detail.html', context)

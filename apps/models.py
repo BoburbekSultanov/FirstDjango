@@ -27,11 +27,25 @@ class Product(Model):
     title = CharField(max_length=255)
     price = DecimalField(max_digits=12, decimal_places=2)
     description = CharField(max_length=255)
-    image = ImageField(upload_to='products/', null=True, blank=True)
+    main_image = ImageField(upload_to='products/', null=True, blank=True)
     category = ForeignKey(Category, on_delete=CASCADE, related_name='products')
 
     def __str__(self):
         return self.name
+
+class Image(Model):
+    class ImageType(TextChoices):
+        XS = 'xs', 'Xs'
+        S = 's', 'S'
+        M = 'm', 'M'
+        L = 'l', 'L'
+        XL = 'xl', 'Xl'
+        XXL = 'xxl', 'Xxl'
+    image = ImageField(upload_to='products/')
+    product = ForeignKey('apps.Product', CASCADE, related_name='images')
+    size = CharField(max_length=255, choices=ImageType)
+
+
 
 class Tariff(Model):
     class StatusType(TextChoices):
@@ -44,6 +58,7 @@ class Tariff(Model):
 
     def __str__(self):
         return self.name
+
 
 
 
