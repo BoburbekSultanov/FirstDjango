@@ -5,7 +5,7 @@ import json
 
 from django.http import JsonResponse, HttpResponse
 
-from apps.models import Jobs, Product
+from apps.models import Jobs, Product, Tariff
 from config.settings import BASE_DIR
 
 
@@ -85,3 +85,8 @@ def product_list(request):
     products = Product.objects.all()
     context = {"products":products}
     return render(request, 'lesson_2/product-list.html', context)
+
+def tariff_list(request):
+    tariffs = Tariff.objects.all()
+    context = {"tariffs":tariffs}
+    return render(request, 'lesson_2/tariff-list.html', context)

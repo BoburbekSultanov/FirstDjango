@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.views import user_list, jobs_list, product_list
+from apps.views import user_list, jobs_list, product_list, tariff_list
 
 # from apps.views import carts, product_id, username, search_view, minmax, path_query, hello_django, temp_context
 
@@ -15,5 +15,6 @@ urlpatterns = [
        # path('contaxt/<str:text>/', temp_context),
        path('user/list', user_list),
        path('jobs/list', jobs_list),
-       path('product/list', product_list)
+       path('product/list', product_list),
+       path('tariff/list', tariff_list)
 ]

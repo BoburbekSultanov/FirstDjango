@@ -1,5 +1,6 @@
-from django.db.models import Model, ForeignKey, CASCADE, ImageField
-from django.db.models.fields import CharField, DecimalField
+
+from django.db.models import Model, ForeignKey, CASCADE, ImageField, TextChoices
+from django.db.models.fields import CharField, DecimalField, IntegerField
 
 
 # Create your models here.
@@ -31,3 +32,31 @@ class Product(Model):
 
     def __str__(self):
         return self.name
+
+class Tariff(Model):
+    class StatusType(TextChoices):
+        MONTH = 'month', 'Month'
+        YEAR = 'year', 'Year'
+    name = CharField(max_length=255)
+    price = DecimalField(max_digits=5, decimal_places=2)
+    discount = IntegerField(max_length=3)
+    time = CharField(max_length=255, choices=StatusType.choices, default=StatusType.MONTH) # noqa
+
+    def __str__(self):
+        return self.name
+
+
+
+
+
+# class Job(Model):
+#     class StatusType(TextChoices):
+#         FULL_TIME = 'full time', 'Full time'
+#         REMOTE = 'remote', 'Remote'
+#         CONTRACT = 'contract', 'Contract'
+#         WFH = 'wfh', 'WFH'
+#
+#     name = CharField(max_length=100)
+#     address = CharField(max_length=100)
+#     country = CharField(max_length=100)
+#     status = CharField(max_length=255, choices=StatusType.choices, default=StatusType.REMOTE)
